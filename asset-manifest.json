@@ -1,16 +1,19 @@
 {
   "files": {
-    "main.css": "/startup-summer/static/css/main.073c9b0a.css",
-    "main.js": "/startup-summer/static/js/main.3f91f5eb.js",
+    "main.css": "/startup-summer/static/css/main.acb7c1de.css",
+    "main.js": "/startup-summer/static/js/main.c3765cef.js",
     "static/js/787.b57fd1bc.chunk.js": "/startup-summer/static/js/787.b57fd1bc.chunk.js",
-    "static/media/logo.svg": "/startup-summer/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/NotFound.svg": "/startup-summer/static/media/NotFound.e971983585ef9132b066d5ec6b8321e4.svg",
+    "static/media/pin.svg": "/startup-summer/static/media/pin.e773c0de5c7b766b78fb0781f1bb8d5d.svg",
     "index.html": "/startup-summer/index.html",
-    "main.073c9b0a.css.map": "/startup-summer/static/css/main.073c9b0a.css.map",
-    "main.3f91f5eb.js.map": "/startup-summer/static/js/main.3f91f5eb.js.map",
+    "static/media/logo.svg": "/startup-summer/static/media/logo.7e07a45d78062ef26fb8e6481d8c6e0c.svg",
+    "static/media/Close.svg": "/startup-summer/static/media/Close.63977825dcdcfe3b2510577dccc0b9b6.svg",
+    "main.acb7c1de.css.map": "/startup-summer/static/css/main.acb7c1de.css.map",
+    "main.c3765cef.js.map": "/startup-summer/static/js/main.c3765cef.js.map",
     "787.b57fd1bc.chunk.js.map": "/startup-summer/static/js/787.b57fd1bc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.3f91f5eb.js"
+    "static/css/main.acb7c1de.css",
+    "static/js/main.c3765cef.js"
   ]
 }
