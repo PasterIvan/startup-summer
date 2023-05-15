@@ -44,8 +44,8 @@ export const App: React.FC = () => {
           <Route path="search/:id" element={<DescriptionVacancy />} />
           <Route path="search/:*" element={<NotFound />} />
           <Route path="favourites" element={<Favorites />} />
-          <Route path="404" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="404" />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/404" />} />
         </Routes>
       </div>
     </MantineProvider>
