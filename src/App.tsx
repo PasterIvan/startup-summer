@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
 
-function App() {
+import { LoadingOverlay, MantineProvider } from "@mantine/core";
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import { loginTC } from "./bll/authReducer";
+import { DescriptionVacancy } from "./components/DescriptionVacancy/DescriptionVacancy";
+import { Favorites } from "./components/Favorites/Favorites";
+import { Head } from "./components/Header/Head";
+import { NotFound } from "./components/NotFound/NotFound";
+import { Search } from "./components/Search/Search";
+import { requestStatus } from "./enums/requestStatus";
+import { useAppDispatch, useAppSelector } from "./hooks/hooks";
+
+const links = [
+  { link: "search", label: "Поиск вакансий" },
+  { link: "favourites", label: "Избранное" },
+];
+
+export const App: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  const { access_token } = useAppSelector((state) => state.auth.login);
+  const { statusApp } = useAppSelector((state) => state.app);
+  const [load, setLoad] = useState(false);
+
+  useEffect(() => {
+    if (statusApp === requestStatus.LOADING) setLoad(true);
+    else setLoad(false);
+  }, [statusApp]);
+
+  useEffect(() => {
+    if (access_token === "") dispatch(loginTC());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MantineProvider withGlobalStyles withNormalizeCSS>
+      <div style={{ background: "#F7F7F8", minHeight: "100vh" }}>
+        <Head links={links} />
+        <LoadingOverlay visible={load} overlayBlur={2} />
+        <Routes>
+          <Route path="/" element={<Navigate to="search" />} />
+          <Route path="search" element={<Search />} />
+          <Route path="search/:id" element={<DescriptionVacancy />} />
+          <Route path="search/:*" element={<NotFound />} />
+          <Route path="favourites" element={<Favorites />} />
+          <Route path="404" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="404" />} />
+        </Routes>
+      </div>
+    </MantineProvider>
   );
-}
-
-export default App;
+};

@@ -1,0 +1,17 @@
+.star:hover {
+  path {stroke: #5E96FC }
+}
+.starActive {
+  fill: #5E96FC;
+  path {
+    stroke: #5E96FC
+  }
+  &:hover{
+    fill: rgba(94, 150, 252, 0.5)
+  }
+  &:hover{
+    path {
+      stroke: rgba(94, 150, 252, 0.5)
+    }}
+}
+
