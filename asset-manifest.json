@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/startup-summer/static/css/main.acb7c1de.css",
-    "main.js": "/startup-summer/static/js/main.eb67ec8b.js",
+    "main.js": "/startup-summer/static/js/main.97a66959.js",
     "static/js/787.b57fd1bc.chunk.js": "/startup-summer/static/js/787.b57fd1bc.chunk.js",
     "static/media/NotFound.svg": "/startup-summer/static/media/NotFound.e971983585ef9132b066d5ec6b8321e4.svg",
     "static/media/pin.svg": "/startup-summer/static/media/pin.e773c0de5c7b766b78fb0781f1bb8d5d.svg",
@@ -9,11 +9,11 @@
     "static/media/logo.svg": "/startup-summer/static/media/logo.7e07a45d78062ef26fb8e6481d8c6e0c.svg",
     "static/media/Close.svg": "/startup-summer/static/media/Close.63977825dcdcfe3b2510577dccc0b9b6.svg",
     "main.acb7c1de.css.map": "/startup-summer/static/css/main.acb7c1de.css.map",
-    "main.eb67ec8b.js.map": "/startup-summer/static/js/main.eb67ec8b.js.map",
+    "main.97a66959.js.map": "/startup-summer/static/js/main.97a66959.js.map",
     "787.b57fd1bc.chunk.js.map": "/startup-summer/static/js/787.b57fd1bc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.acb7c1de.css",
-    "static/js/main.eb67ec8b.js"
+    "static/js/main.97a66959.js"
   ]
 }
