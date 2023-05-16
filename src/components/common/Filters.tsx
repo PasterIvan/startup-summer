@@ -12,8 +12,8 @@ import { InputPayment } from "./InputPayment";
 
 type FiltersProps = {
   onChangeFilters: (
-    catalog: string | undefined,
-    payment_from: string | undefined,
+    catalog: string | undefined | null,
+    payment_from: string | undefined | null,
     payment_to: string | undefined,
   ) => void;
 };
@@ -24,7 +24,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
   const [searchParams] = useSearchParams();
 
   const [catalog, setCatalog] = useState(
-    searchParams.get("catalogues") || undefined,
+    searchParams.get("catalogues") || null,
   );
   const [paymentFrom, setPaymentFrom] = useState(
     searchParams.get("payment_from") || undefined,
@@ -32,7 +32,6 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
   const [paymentTo, setPaymentTo] = useState(
     searchParams.get("payment_to") || undefined,
   );
-
   useEffect(() => {
     dispatch(cataloguesTC());
   }, []);
@@ -62,10 +61,10 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
           p={0}
           rightIcon={<img src={close} alt="close" />}
           onClick={() => {
-            setCatalog(undefined);
+            setCatalog(null);
             setPaymentFrom(undefined);
             setPaymentTo(undefined);
-            onChangeFilters(undefined, undefined, undefined);
+            onChangeFilters(null, undefined, undefined);
           }}
         >
           Сбросить все
@@ -78,7 +77,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
         placeholder="Выберете отрасль"
         rightSection={<IconChevronDown size="1rem" />}
         rightSectionWidth={36}
-        onChange={(value) => setCatalog(value || undefined)}
+        onChange={(value) => setCatalog(value || null)}
         radius="md"
         size="md"
         styles={{ rightSection: { pointerEvents: "none" } }}
@@ -96,7 +95,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
       </Text>
       <InputPayment
         placeholder="От"
-        min={1}
+        min={0}
         value={Number(paymentFrom) || undefined}
         onChange={(val) => {
           setPaymentFrom(val.toString());
@@ -104,7 +103,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
       />
       <InputPayment
         placeholder="До"
-        min={1}
+        min={0}
         value={Number(paymentTo) || undefined}
         onChange={(val) => {
           setPaymentTo(val.toString());
