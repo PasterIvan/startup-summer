@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 
 import { useAppSelector } from "../../hooks/hooks";
 import { Vacancy } from "../common/Vacancy";
+import { NotFound } from "../NotFound/NotFound";
 
 export const Vacancies: React.FC = () => {
   const { vacancies, total } = useAppSelector((state) => state.vacancies);
@@ -73,9 +74,13 @@ export const Vacancies: React.FC = () => {
           setKeyword(event.currentTarget.value);
         }}
       />
-      {vacancies.map((vacancy) => (
-        <Vacancy key={vacancy.id} vacancy={vacancy} />
-      ))}
+      {vacancies.length === 0 ? (
+        <NotFound notButton />
+      ) : (
+        vacancies.map((vacancy) => (
+          <Vacancy key={vacancy.id} vacancy={vacancy} />
+        ))
+      )}
       <Pagination
         pt="xl"
         total={total}

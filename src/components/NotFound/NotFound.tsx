@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 import NotFoundImg from "../../img/NotFound.svg";
 
-export const NotFound: React.FC = () => {
+type NotFoundProps = {
+  notButton?: boolean;
+};
+
+export const NotFound: React.FC<NotFoundProps> = ({ notButton }) => {
   const navigation = useNavigate();
 
   return (
@@ -15,13 +19,15 @@ export const NotFound: React.FC = () => {
         <Text size={24} weight={700} py={32}>
           Упс, здесь еще ничего нет!
         </Text>
-        <Button
-          size="md"
-          variant="light"
-          onClick={() => navigation("../search")}
-        >
-          Поиск Вакансий
-        </Button>
+        {!notButton && (
+          <Button
+            size="md"
+            variant="light"
+            onClick={() => navigation("../search")}
+          >
+            Поиск Вакансий
+          </Button>
+        )}
       </Flex>
     </Container>
   );

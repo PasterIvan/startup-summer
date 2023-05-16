@@ -32,6 +32,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
   const [paymentTo, setPaymentTo] = useState(
     searchParams.get("payment_to") || undefined,
   );
+
   useEffect(() => {
     dispatch(cataloguesTC());
   }, []);

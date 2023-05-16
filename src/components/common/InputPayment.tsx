@@ -25,6 +25,7 @@ export const InputPayment: React.FC<InputPaymentProps> = ({
   const decrementHandler = (): void => {
     handlers.current?.decrement();
   };
+
   return (
     <div style={{ position: "relative" }}>
       <NumberInput
@@ -35,7 +36,7 @@ export const InputPayment: React.FC<InputPaymentProps> = ({
         mt={8}
         min={min}
         max={max}
-        value={value || ''}
+        value={value || ""}
         onChange={(val: number) => onChange(val)}
         handlersRef={handlers}
       />
