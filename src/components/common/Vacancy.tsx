@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, createStyles, Flex, Image, Text } from "@mantine/core";
+import { createStyles, Flex, Image, Text } from "@mantine/core";
 import { NavLink } from "react-router-dom";
 
 import { VacancyType } from "../../api/types";
