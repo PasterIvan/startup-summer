@@ -11,6 +11,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 
 import { useAppSelector } from "../../hooks/hooks";
+import { useElementWidth } from "../../hooks/useElementWidth";
 import search from "../../img/Search.svg";
 import { Vacancy } from "../common/Vacancy";
 import { NotFound } from "../NotFound/NotFound";
@@ -21,7 +22,7 @@ export const Vacancies: React.FC = () => {
     (state) => state.filters.paramsState,
   );
   const { classes } = useStyles();
-
+  const [ref, width] = useElementWidth();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [newKeyword, setKeyword] = useState(keyword);
@@ -56,7 +57,7 @@ export const Vacancies: React.FC = () => {
   };
 
   return (
-    <Flex className={classes.flex} gap="md">
+    <Flex ref={ref} className={classes.flex} gap="md">
       <Input
         size="lg"
         radius="0.7rem"
@@ -84,6 +85,7 @@ export const Vacancies: React.FC = () => {
       <Pagination
         pt="xl"
         total={total}
+        size={width && width < 500 ? "xs" : "md"}
         value={Number(searchParams.get("page")) + 1 || 0}
         defaultValue={Number(page) + 1 || 0}
         onChange={(value) => {

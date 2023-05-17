@@ -46,13 +46,17 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
         </Text>
         <Button
           variant="subtle"
-          color="gray"
+          color="myGray"
           radius="md"
           size="md"
-          compact
           h={20}
           p={0}
-          rightIcon={<img src={close} alt="close" />}
+          rightIcon={<img className={classes.close} src={close} alt="close" />}
+          styles={() => ({
+            rightIcon: {
+              marginLeft: 4,
+            },
+          })}
           onClick={() => {
             setCatalog(null);
             setPaymentFrom(undefined);
@@ -128,6 +132,9 @@ const useStyles = createStyles((theme) => ({
       alignItems: "center",
       width: "100%",
     },
+  },
+  close: {
+    width: "16px",
   },
   select: {
     width: "100%",

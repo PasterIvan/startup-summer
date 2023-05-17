@@ -1,6 +1,13 @@
 import React from "react";
 
-import { Container, Image, Text, Button, Flex } from "@mantine/core";
+import {
+  Container,
+  Image,
+  Text,
+  Button,
+  Flex,
+  createStyles,
+} from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
 import NotFoundImg from "../../img/NotFound.svg";
@@ -11,6 +18,7 @@ type NotFoundProps = {
 
 export const NotFound: React.FC<NotFoundProps> = ({ notButton }) => {
   const navigation = useNavigate();
+  const { classes } = useStyles();
 
   return (
     <Container size="md" py={120}>
@@ -21,6 +29,7 @@ export const NotFound: React.FC<NotFoundProps> = ({ notButton }) => {
         </Text>
         {!notButton && (
           <Button
+            className={classes.button}
             size="md"
             variant="light"
             onClick={() => navigation("../search")}
@@ -32,3 +41,9 @@ export const NotFound: React.FC<NotFoundProps> = ({ notButton }) => {
     </Container>
   );
 };
+
+const useStyles = createStyles((theme) => ({
+  button: {
+    background: theme.colors.blue[5],
+  },
+}));
