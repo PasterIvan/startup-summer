@@ -1,10 +1,17 @@
 import React, { ChangeEvent, useState } from "react";
 
-import { Button, Flex, Input, Pagination } from "@mantine/core";
-import { IconSearch } from "@tabler/icons-react";
+import {
+  Button,
+  createStyles,
+  Flex,
+  Image,
+  Input,
+  Pagination,
+} from "@mantine/core";
 import { useSearchParams } from "react-router-dom";
 
 import { useAppSelector } from "../../hooks/hooks";
+import search from "../../img/Search.svg";
 import { Vacancy } from "../common/Vacancy";
 import { NotFound } from "../NotFound/NotFound";
 
@@ -13,6 +20,7 @@ export const Vacancies: React.FC = () => {
   const { page, keyword } = useAppSelector(
     (state) => state.filters.paramsState,
   );
+  const { classes } = useStyles();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -48,20 +56,12 @@ export const Vacancies: React.FC = () => {
   };
 
   return (
-    <Flex
-      mih={50}
-      miw={773}
-      gap="md"
-      justify="flex-start"
-      align="center"
-      direction="column"
-      wrap="nowrap"
-    >
+    <Flex className={classes.flex} gap="md">
       <Input
         size="lg"
         radius="0.7rem"
-        miw={773}
-        icon={<IconSearch size="1.5rem" />}
+        w="100%"
+        icon={<Image src={search} maw={16} alt="Pin" />}
         defaultValue={newKeyword}
         placeholder="Введите название вакансии"
         rightSection={
@@ -93,3 +93,20 @@ export const Vacancies: React.FC = () => {
     </Flex>
   );
 };
+
+const useStyles = createStyles((theme) => ({
+  flex: {
+    width: "100%",
+    maxWidth: 773,
+    minHeight: 50,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    flexDirection: "column",
+    flexWrap: "nowrap",
+
+    [theme.fn.smallerThan("xl")]: {
+      justifyContent: "center",
+      minWidth: "auto",
+    },
+  },
+}));

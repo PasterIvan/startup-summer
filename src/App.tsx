@@ -11,6 +11,7 @@ import { NotFound } from "./components/NotFound/NotFound";
 import { Search } from "./components/Search/Search";
 import { requestStatus } from "./enums/requestStatus";
 import { useAppDispatch, useAppSelector } from "./hooks/hooks";
+import { myTheme } from "./themeConfig";
 
 const links = [
   { link: "search", label: "Поиск вакансий" },
@@ -34,7 +35,7 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
+    <MantineProvider withGlobalStyles withNormalizeCSS theme={myTheme}>
       <div style={{ background: "#F7F7F8", minHeight: "100vh" }}>
         <Head links={links} />
         <LoadingOverlay visible={load} overlayBlur={2} />

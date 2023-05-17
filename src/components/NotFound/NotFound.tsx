@@ -16,7 +16,7 @@ export const NotFound: React.FC<NotFoundProps> = ({ notButton }) => {
     <Container size="md" py={120}>
       <Flex justify="space-between" align="center" direction="column">
         <Image src={NotFoundImg} alt="NotFoundImg" maw={240} />
-        <Text size={24} weight={700} py={32}>
+        <Text size={24} weight={700} py={32} align="center">
           Упс, здесь еще ничего нет!
         </Text>
         {!notButton && (

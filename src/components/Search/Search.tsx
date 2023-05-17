@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { Container, Flex } from "@mantine/core";
+import { Container, createStyles, Flex } from "@mantine/core";
 import { useSearchParams } from "react-router-dom";
 
 import { setParamsState } from "../../bll/filtersReducer";
@@ -14,6 +14,7 @@ import { Vacancies } from "./Vacancies";
 export const Search: React.FC = () => {
   const dispatch = useAppDispatch();
   const { paramsState } = useAppSelector((state) => state.filters);
+  const { classes } = useStyles();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -65,9 +66,9 @@ export const Search: React.FC = () => {
       <Flex
         py={40}
         gap="md"
-        justify="space-between"
-        direction="row"
         wrap="nowrap"
+        justify="center"
+        className={classes.flex}
       >
         <Filters
           onChangeFilters={(catalog, paymentFrom, paymentTo) =>
@@ -79,3 +80,15 @@ export const Search: React.FC = () => {
     </Container>
   );
 };
+
+const useStyles = createStyles((theme) => ({
+  flex: {
+    flexDirection: "row",
+    width: "100%",
+
+    [theme.fn.smallerThan("md")]: {
+      flexDirection: "column",
+      alignItems: "center",
+    },
+  },
+}));

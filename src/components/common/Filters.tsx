@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Box, Button, Flex, Select, Text } from "@mantine/core";
+import { Box, Button, createStyles, Flex, Select, Text } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
 import { useSearchParams } from "react-router-dom";
 
@@ -20,6 +20,7 @@ type FiltersProps = {
 
 export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
   const dispatch = useAppDispatch();
+  const { classes } = useStyles();
   const { filters } = useAppSelector((state) => state.filters);
   const [searchParams] = useSearchParams();
 
@@ -38,16 +39,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
   }, []);
 
   return (
-    <Box
-      maw={400}
-      pos="relative"
-      mah="360px"
-      sx={{
-        backgroundColor: "#fff",
-        padding: 20,
-        borderRadius: "0.7rem",
-      }}
-    >
+    <Box maw={773} mah="360px" className={classes.box}>
       <Flex justify="space-between">
         <Text fw={700} size="lg" inline>
           Фильтры
@@ -89,7 +81,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
           value: el.key.toString(),
           label: el.title_trimmed,
         }))}
-        sx={{ width: 275, borderRadius: "0.5rem" }}
+        className={classes.select}
       />
       <Text fw={700} inline>
         Оклад
@@ -97,6 +89,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
       <InputPayment
         placeholder="От"
         min={0}
+        max={Number(paymentTo) || undefined}
         value={Number(paymentFrom) || undefined}
         onChange={(val) => {
           setPaymentFrom(val.toString());
@@ -104,7 +97,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
       />
       <InputPayment
         placeholder="До"
-        min={0}
+        min={Number(paymentFrom) || 0}
         value={Number(paymentTo) || undefined}
         onChange={(val) => {
           setPaymentTo(val.toString());
@@ -122,3 +115,27 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
     </Box>
   );
 };
+
+const useStyles = createStyles((theme) => ({
+  box: {
+    position: "relative",
+    backgroundColor: "#fff",
+    padding: 20,
+    borderRadius: "0.7rem",
+
+    [theme.fn.smallerThan("md")]: {
+      flexDirection: "column",
+      alignItems: "center",
+      width: "100%",
+    },
+  },
+  select: {
+    width: "100%",
+    minWidth: 275,
+    borderRadius: "0.5rem",
+
+    [theme.fn.smallerThan("md")]: {
+      minWidth: "auto",
+    },
+  },
+}));

@@ -1,6 +1,16 @@
 import React from "react";
 
-import { Container, createStyles, Group, Header, rem } from "@mantine/core";
+import {
+  Burger,
+  Container,
+  createStyles,
+  Group,
+  Header,
+  rem,
+  Transition,
+  Paper,
+} from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import { NavLink } from "react-router-dom";
 
 import { setParamsState } from "../../bll/filtersReducer";
@@ -17,6 +27,8 @@ export const Head: React.FC<HeaderResponsiveProps> = ({
   links,
 }: HeaderResponsiveProps) => {
   const dispatch = useAppDispatch();
+  const [opened, { toggle }] = useDisclosure(false);
+
   const { classes } = useStyles();
   const setAction = ({ isActive }: ActionType): string =>
     isActive ? classes.linkActive : classes.link;
@@ -51,7 +63,22 @@ export const Head: React.FC<HeaderResponsiveProps> = ({
           <img src={logo} alt="logo" />
           <span className={classes.logo}>Jobored</span>
         </div>
-        <Group spacing={5}>{items}</Group>
+        <Group spacing={5} className={classes.links}>
+          {items}
+        </Group>
+        <Burger
+          opened={opened}
+          onClick={toggle}
+          className={classes.burger}
+          size="sm"
+        />
+        <Transition transition="pop-top-right" duration={200} mounted={opened}>
+          {(styles) => (
+            <Paper className={classes.dropdown} withBorder style={styles}>
+              {items}
+            </Paper>
+          )}
+        </Transition>
       </Container>
     </Header>
   );
@@ -64,6 +91,22 @@ const useStyles = createStyles((theme) => ({
     zIndex: 1,
   },
 
+  dropdown: {
+    position: "absolute",
+    top: HEADER_HEIGHT,
+    left: 0,
+    right: 0,
+    zIndex: 1,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
+    borderTopWidth: 0,
+    overflow: "hidden",
+
+    [theme.fn.largerThan("sm")]: {
+      display: "none",
+    },
+  },
+
   header: {
     position: "relative",
     display: "flex",
@@ -71,26 +114,35 @@ const useStyles = createStyles((theme) => ({
     alignItems: "center",
     height: "100%",
   },
+
   logoContainer: {
     position: "absolute",
     display: "flex",
     alignItems: "center",
-    left: 0,
+    left: 20,
+    [theme.fn.smallerThan("sm")]: {
+      left: 20,
+    },
   },
+
   logo: {
     margin: `${rem(8)} ${rem(12)}`,
     lineHeight: 1,
     fontSize: theme.fontSizes.xl,
     fontWeight: 600,
   },
+
+  links: {
+    [theme.fn.smallerThan("sm")]: {
+      display: "none",
+    },
+  },
+
   link: {
     display: "block",
     padding: `${rem(8)} ${rem(15)}`,
     textDecoration: "none",
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
+    color: theme.colors.black[0],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
   },
@@ -99,9 +151,16 @@ const useStyles = createStyles((theme) => ({
     display: "block",
     padding: `${rem(8)} ${rem(15)}`,
     textDecoration: "none",
-    color: theme.fn.variant({ variant: "light", color: theme.primaryColor })
-      .color,
+    color: theme.colors.blue[1],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
+  },
+
+  burger: {
+    position: "absolute",
+    right: 20,
+    [theme.fn.largerThan("sm")]: {
+      display: "none",
+    },
   },
 }));
