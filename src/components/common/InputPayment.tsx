@@ -31,7 +31,7 @@ export const InputPayment: React.FC<InputPaymentProps> = ({
       <NumberInput
         hideControls
         placeholder={placeholder}
-        radius="md"
+        radius="sm"
         size="md"
         mt={8}
         min={min}

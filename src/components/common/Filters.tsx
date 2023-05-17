@@ -6,14 +6,14 @@ import { useSearchParams } from "react-router-dom";
 
 import { cataloguesTC } from "../../bll/filtersReducer";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import close from "../../img/Close.svg";
 
 import { InputPayment } from "./InputPayment";
+import { SvgClose } from "./SvgClose/SvgClose";
 
 type FiltersProps = {
   onChangeFilters: (
     catalog: string | undefined | null,
-    payment_from: string | undefined | null,
+    payment_from: string | undefined,
     payment_to: string | undefined,
   ) => void;
 };
@@ -39,7 +39,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
   }, []);
 
   return (
-    <Box maw={773} mah="360px" className={classes.box}>
+    <Box className={classes.box}>
       <Flex justify="space-between">
         <Text fw={700} size="lg" inline>
           Фильтры
@@ -47,11 +47,9 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
         <Button
           variant="subtle"
           color="myGray"
-          radius="md"
           size="md"
-          h={20}
-          p={0}
-          rightIcon={<img className={classes.close} src={close} alt="close" />}
+          className={classes.buttonClose}
+          rightIcon={<SvgClose />}
           styles={() => ({
             rightIcon: {
               marginLeft: 4,
@@ -75,7 +73,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
         rightSection={<IconChevronDown size="1rem" />}
         rightSectionWidth={36}
         onChange={(value) => setCatalog(value || null)}
-        radius="md"
+        radius="sm"
         size="md"
         styles={{ rightSection: { pointerEvents: "none" } }}
         pb={20}
@@ -110,7 +108,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
       <Button
         fullWidth
         size="md"
-        radius="md"
+        radius="sm"
         mt={20}
         onClick={() => onChangeFilters(catalog, paymentFrom, paymentTo)}
       >
@@ -125,7 +123,9 @@ const useStyles = createStyles((theme) => ({
     position: "relative",
     backgroundColor: "#fff",
     padding: 20,
-    borderRadius: "0.7rem",
+    borderRadius: theme.radius.lg,
+    maxWidth: 773,
+    maxHeight: 360,
 
     [theme.fn.smallerThan("md")]: {
       flexDirection: "column",
@@ -135,6 +135,9 @@ const useStyles = createStyles((theme) => ({
   },
   close: {
     width: "16px",
+    "&:hover": {
+      fill: theme.colors.blue[2],
+    },
   },
   select: {
     width: "100%",
@@ -143,6 +146,20 @@ const useStyles = createStyles((theme) => ({
 
     [theme.fn.smallerThan("md")]: {
       minWidth: "auto",
+    },
+  },
+  buttonClose: {
+    padding: 0,
+    height: 20,
+    "&:hover": {
+      line: {
+        stroke: theme.colors.blue[2],
+      },
+    },
+    "&:active": {
+      line: {
+        stroke: theme.colors.blue[1],
+      },
     },
   },
 }));

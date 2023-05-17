@@ -60,13 +60,13 @@ export const Vacancies: React.FC = () => {
     <Flex ref={ref} className={classes.flex} gap="md">
       <Input
         size="lg"
-        radius="0.7rem"
+        radius="sm"
         w="100%"
         icon={<Image src={search} maw={16} alt="Pin" />}
         defaultValue={newKeyword}
         placeholder="Введите название вакансии"
         rightSection={
-          <Button radius="md" onClick={setKeywordSearch}>
+          <Button radius="sm" onClick={setKeywordSearch}>
             Поиск
           </Button>
         }
@@ -85,7 +85,7 @@ export const Vacancies: React.FC = () => {
       <Pagination
         pt="xl"
         total={total}
-        size={width && width < 500 ? "xs" : "md"}
+        size={width && width < 380 ? "xs" : "md"}
         value={Number(searchParams.get("page")) + 1 || 0}
         defaultValue={Number(page) + 1 || 0}
         onChange={(value) => {

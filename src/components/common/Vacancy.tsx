@@ -55,7 +55,7 @@ export const Vacancy: React.FC<VacancyProps> = ({ vacancy }) => {
         <Text>{vacancy.type_of_work.title}</Text>
       </Flex>
       <Flex align="center" gap={7}>
-        <Image src={pin} alt="Pin" />
+        <Image maw={22} src={pin} alt="Pin" />
         <Text>{vacancy.town.title}</Text>
       </Flex>
     </Flex>
@@ -64,10 +64,11 @@ export const Vacancy: React.FC<VacancyProps> = ({ vacancy }) => {
 
 const useStyles = createStyles((theme) => ({
   container: {
+    display: "flex",
     position: "relative",
     backgroundColor: "#fff",
     padding: 24,
-    borderRadius: "0.7rem",
+    borderRadius: theme.radius.md,
     width: "100%",
     justifyContent: "flex-start",
     alignItems: "flex-start",

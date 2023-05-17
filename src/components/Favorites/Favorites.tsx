@@ -5,11 +5,14 @@ import { Container, Flex, Pagination } from "@mantine/core";
 import { VacancyType } from "../../api/types";
 import { setFavouritesPage } from "../../bll/authReducer";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { useElementWidth } from "../../hooks/useElementWidth";
 import { Vacancy } from "../common/Vacancy";
 import { NotFound } from "../NotFound/NotFound";
 
 export const Favorites: React.FC = () => {
   const dispatch = useAppDispatch();
+  const [ref, width] = useElementWidth();
+
   const { favourites, favouritesPage } = useAppSelector((state) => state.auth);
   const [favouritesInPage, setFavouritesInPage] = useState<VacancyType[]>([]);
 
@@ -31,7 +34,7 @@ export const Favorites: React.FC = () => {
   }, [favouritesPage, favourites]);
 
   return (
-    <Container>
+    <Container ref={ref}>
       <Flex
         py={40}
         gap="md"
@@ -49,6 +52,7 @@ export const Favorites: React.FC = () => {
             <Pagination
               pt="xl"
               total={totalPages}
+              size={width && width < 500 ? "xs" : "md"}
               value={favouritesPage + 1}
               defaultValue={favouritesPage + 1}
               onChange={(value) => {

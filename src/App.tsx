@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { LoadingOverlay, MantineProvider } from "@mantine/core";
+import { createStyles, LoadingOverlay, MantineProvider } from "@mantine/core";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { loginTC } from "./bll/authReducer";
@@ -20,9 +20,10 @@ const links = [
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
-
+  const { classes } = useStyles();
   const { access_token } = useAppSelector((state) => state.auth.login);
   const { statusApp } = useAppSelector((state) => state.app);
+
   const [load, setLoad] = useState(false);
 
   useEffect(() => {
@@ -36,9 +37,13 @@ export const App: React.FC = () => {
 
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS theme={myTheme}>
-      <div style={{ background: "#F7F7F8", minHeight: "100vh" }}>
+      <div className={classes.root}>
+        <LoadingOverlay
+          visible={load}
+          overlayBlur={2}
+          className={classes.loader}
+        />
         <Head links={links} />
-        <LoadingOverlay visible={load} overlayBlur={2} />
         <Routes>
           <Route path="/" element={<Navigate to="search" />} />
           <Route path="search" element={<Search />} />
@@ -51,3 +56,11 @@ export const App: React.FC = () => {
     </MantineProvider>
   );
 };
+const useStyles = createStyles(() => ({
+  root: {
+    background: "#F7F7F8",
+    width: "100%",
+    minHeight: "100vh",
+  },
+  loader: { position: "fixed" },
+}));

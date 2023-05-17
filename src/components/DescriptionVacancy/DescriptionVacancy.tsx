@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Container, Box, Flex } from "@mantine/core";
+import { Container, Box, Flex, createStyles } from "@mantine/core";
 import { useParams } from "react-router-dom";
 
 import { vacancyByIdTC } from "../../bll/vacanciesReducer";
@@ -9,6 +9,7 @@ import { Vacancy } from "../common/Vacancy";
 
 export const DescriptionVacancy: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { classes } = useStyles();
   const { id } = useParams();
   const { vacancy } = useAppSelector((state) => state.vacancies);
 
@@ -18,26 +19,28 @@ export const DescriptionVacancy: React.FC = () => {
 
   return (
     <Container>
-      <Flex
-        py={40}
-        gap="md"
-        justify="space-around"
-        align="center"
-        direction="column"
-      >
+      <Flex gap="md" className={classes.flex}>
         <Vacancy vacancy={vacancy} />
-        <Box
-          pos="relative"
-          sx={{
-            backgroundColor: "#fff",
-            padding: 24,
-            borderRadius: "0.7rem",
-            width: "100%",
-          }}
-        >
+        <Box className={classes.box}>
           <div dangerouslySetInnerHTML={{ __html: vacancy.vacancyRichText }} />
         </Box>
       </Flex>
     </Container>
   );
 };
+
+const useStyles = createStyles((theme) => ({
+  flex: {
+    padding: "40px 0 40px 0",
+    justifyContent: "space-around",
+    alignItems: "center",
+    flexDirection: "column",
+  },
+  box: {
+    position: "relative",
+    backgroundColor: "#fff",
+    padding: 24,
+    borderRadius: theme.radius.md,
+    width: "100%",
+  },
+}));

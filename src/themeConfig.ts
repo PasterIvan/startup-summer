@@ -8,6 +8,13 @@ export const myTheme: MantineThemeOverride = {
     black: ["#232134"],
     myGray: ["#7B7C88", "#ACADB9", "#D5D6DC", "#EAEBED", "#F5F5F6", "#FFFFFF"],
   },
+  radius: {
+    xs: "4px",
+    sm: "8px",
+    md: "12px",
+    lg: "16px",
+    xl: "20px",
+  },
   primaryColor: "blue",
   primaryShade: 1,
   activeStyles: { transform: "none" },
@@ -30,7 +37,7 @@ export const myTheme: MantineThemeOverride = {
           "&:active": {
             color:
               variant === "light" || variant === "subtle"
-                ? theme.colors.blue[0]
+                ? theme.colors.blue[1]
                 : undefined,
             borderColor: variant === "light" ? theme.colors.blue[0] : undefined,
             backgroundColor:
