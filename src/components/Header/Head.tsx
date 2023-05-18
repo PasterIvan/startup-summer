@@ -119,20 +119,22 @@ const useStyles = createStyles((theme) => ({
     position: "absolute",
     display: "flex",
     alignItems: "center",
-    left: 20,
+    left: 15,
     [theme.fn.smallerThan("sm")]: {
       left: 20,
     },
   },
 
   logo: {
-    margin: `${rem(8)} ${rem(12)}`,
-    lineHeight: 1,
-    fontSize: theme.fontSizes.xl,
+    marginLeft: 12,
+    lineHeight: "36px",
+    fontSize: 24,
     fontWeight: 600,
+    letterSpacing: "0.02em",
   },
 
   links: {
+    gap: 60,
     [theme.fn.smallerThan("sm")]: {
       display: "none",
     },
@@ -140,7 +142,6 @@ const useStyles = createStyles((theme) => ({
 
   link: {
     display: "block",
-    padding: `${rem(8)} ${rem(15)}`,
     textDecoration: "none",
     color: theme.colors.black[0],
     fontSize: theme.fontSizes.sm,
@@ -149,7 +150,6 @@ const useStyles = createStyles((theme) => ({
 
   linkActive: {
     display: "block",
-    padding: `${rem(8)} ${rem(15)}`,
     textDecoration: "none",
     color: theme.colors.blue[1],
     fontSize: theme.fontSizes.sm,

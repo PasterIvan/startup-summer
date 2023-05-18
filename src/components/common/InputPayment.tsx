@@ -37,7 +37,7 @@ export const InputPayment: React.FC<InputPaymentProps> = ({
         hideControls
         placeholder={placeholder}
         radius="sm"
-        size="md"
+        size="xs"
         mt={8}
         min={min}
         max={max}
@@ -53,6 +53,7 @@ export const InputPayment: React.FC<InputPaymentProps> = ({
 const useStyles = createStyles((theme) => ({
   container: {
     position: "relative",
+    input: { height: "42px" },
     "&:hover": {
       input: {
         border: `1px solid ${theme.colors.blue[1]}`,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Container, Flex, Pagination } from "@mantine/core";
+import { Container, createStyles, Flex, Pagination } from "@mantine/core";
 
 import { VacancyType } from "../../api/types";
 import { setFavouritesPage } from "../../bll/authReducer";
@@ -11,6 +11,8 @@ import { NotFound } from "../NotFound/NotFound";
 
 export const Favorites: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { classes } = useStyles();
+
   const [ref, width] = useElementWidth();
 
   const { favourites, favouritesPage } = useAppSelector((state) => state.auth);
@@ -50,9 +52,10 @@ export const Favorites: React.FC = () => {
               <Vacancy key={vacancy.id} vacancy={vacancy} />
             ))}
             <Pagination
-              pt="xl"
               total={totalPages}
-              size={width && width < 500 ? "xs" : "md"}
+              className={classes.paginator}
+              siblings={width && width < 380 ? 0 : 1}
+              size={width && width < 500 ? "sm" : "md"}
               value={favouritesPage + 1}
               defaultValue={favouritesPage + 1}
               onChange={(value) => {
@@ -65,3 +68,12 @@ export const Favorites: React.FC = () => {
     </Container>
   );
 };
+
+const useStyles = createStyles((theme) => ({
+  paginator: {
+    paddingTop: 24,
+    button: {
+      fontSize: theme.fontSizes.sm,
+    },
+  },
+}));

@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 import { myTheme } from "./themeConfig";
 
 const links = [
-  { link: "search", label: "Поиск вакансий" },
+  { link: "search", label: "Поиск Вакансий" },
   { link: "favourites", label: "Избранное" },
 ];
 

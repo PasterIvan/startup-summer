@@ -57,14 +57,14 @@ export const Vacancies: React.FC = () => {
   };
 
   return (
-    <Flex ref={ref} className={classes.flex} gap="md">
+    <Flex ref={ref} className={classes.flex} gap="16px">
       <Input
         data-elem="search-input"
         className={classes.input}
-        size="lg"
+        size="xs"
         radius="sm"
         w="100%"
-        icon={<Image src={search} maw={16} alt="Pin" />}
+        icon={<Image src={search} miw={16} ml={12} mr={8} alt="Pin" />}
         defaultValue={newKeyword}
         placeholder="Введите название вакансии"
         rightSection={
@@ -89,9 +89,10 @@ export const Vacancies: React.FC = () => {
         ))
       )}
       <Pagination
-        pt="xl"
         total={total}
-        size={width && width < 380 ? "xs" : "md"}
+        siblings={width && width < 380 ? 0 : 1}
+        className={classes.paginator}
+        size={width && width < 380 ? "sm" : "md"}
         value={Number(searchParams.get("page")) + 1 || 0}
         defaultValue={Number(page) + 1 || 0}
         onChange={(value) => {
@@ -117,7 +118,14 @@ const useStyles = createStyles((theme) => ({
       minWidth: "auto",
     },
   },
+  paginator: {
+    paddingTop: 24,
+    button: {
+      fontSize: theme.fontSizes.sm,
+    },
+  },
   input: {
+    input: { height: "48px" },
     "&:hover": {
       input: {
         border: `1px solid ${theme.colors.blue[1]}`,

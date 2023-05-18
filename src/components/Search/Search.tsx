@@ -65,7 +65,7 @@ export const Search: React.FC = () => {
     <Container size="lg">
       <Flex
         py={40}
-        gap="md"
+        gap="28px"
         wrap="nowrap"
         justify="center"
         className={classes.flex}

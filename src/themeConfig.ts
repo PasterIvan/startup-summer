@@ -15,6 +15,16 @@ export const myTheme: MantineThemeOverride = {
     lg: "16px",
     xl: "20px",
   },
+  fontSizes: {
+    xs: "14px",
+    sm: "16px",
+    md: "20px",
+    lg: "26px",
+    xl: "28px",
+  },
+  headings: {
+    fontWeight: 400,
+  },
   primaryColor: "blue",
   primaryShade: 1,
   activeStyles: { transform: "none" },

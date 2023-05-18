@@ -42,7 +42,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
   return (
     <Box className={classes.box}>
       <Flex justify="space-between">
-        <Text fw={700} size="lg" inline>
+        <Text fw={700} fz="md" size="lg" inline>
           Фильтры
         </Text>
         <Button
@@ -66,7 +66,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
           Сбросить все
         </Button>
       </Flex>
-      <Text fw={700} pt={32} pb={8} inline>
+      <Text fw={700} pt={32} pb={8} fz="sm" inline>
         Отрасль
       </Text>
       <Select
@@ -76,7 +76,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
         rightSection={<SvgArrow />}
         onChange={(value) => setCatalog(value || null)}
         radius="sm"
-        size="md"
+        size="xs"
         styles={{
           dropdown: {
             borderRadius: "8px",
@@ -88,6 +88,8 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
             },
           },
           rightSection: {
+            paddingRight: `${isOpen ? "0px" : "12px"}`,
+            paddingLeft: `${isOpen ? "12px" : "0"}`,
             pointerEvents: "none",
             transform: `${isOpen && "rotate(180deg)"}`,
             transition: ".3s",
@@ -103,12 +105,12 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
         value={catalog}
         data={filters.map((el) => ({
           value: el.key.toString(),
-          label: el.title_trimmed,
+          label: el.title,
         }))}
         onDropdownOpen={() => setIsOpen(true)}
         onDropdownClose={() => setIsOpen(false)}
       />
-      <Text fw={700} inline>
+      <Text fw={700} fz="sm" inline>
         Оклад
       </Text>
       <InputPayment
@@ -170,7 +172,7 @@ const useStyles = createStyles((theme) => ({
     minWidth: 275,
     marginBottom: 20,
     borderRadius: "0.5rem",
-
+    input: { height: "42px" },
     [theme.fn.smallerThan("md")]: {
       minWidth: "auto",
     },
