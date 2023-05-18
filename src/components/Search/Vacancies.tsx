@@ -60,6 +60,7 @@ export const Vacancies: React.FC = () => {
     <Flex ref={ref} className={classes.flex} gap="md">
       <Input
         data-elem="search-input"
+        className={classes.input}
         size="lg"
         radius="sm"
         w="100%"
@@ -114,6 +115,13 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.smallerThan("xl")]: {
       justifyContent: "center",
       minWidth: "auto",
+    },
+  },
+  input: {
+    "&:hover": {
+      input: {
+        border: `1px solid ${theme.colors.blue[1]}`,
+      },
     },
   },
 }));

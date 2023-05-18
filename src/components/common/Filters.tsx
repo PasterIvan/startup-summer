@@ -89,7 +89,8 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
           },
           rightSection: {
             pointerEvents: "none",
-            transform: `${isOpen && "rotate(-180deg)"}`,
+            transform: `${isOpen && "rotate(180deg)"}`,
+            transition: ".3s",
             svg: { width: 24, height: 24 },
             path: { stroke: `${isOpen && "#5E96FC"}` },
           },
@@ -99,7 +100,6 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
             "&[data-selected]": { background: "#5E96FC" },
           },
         }}
-        pb={20}
         value={catalog}
         data={filters.map((el) => ({
           value: el.key.toString(),
@@ -168,6 +168,7 @@ const useStyles = createStyles((theme) => ({
   select: {
     width: "100%",
     minWidth: 275,
+    marginBottom: 20,
     borderRadius: "0.5rem",
 
     [theme.fn.smallerThan("md")]: {
