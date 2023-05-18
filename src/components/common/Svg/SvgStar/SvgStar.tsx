@@ -1,8 +1,8 @@
 import React from "react";
 
-import { VacancyType } from "../../../api/types";
-import { changeFavorites } from "../../../bll/authReducer";
-import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
+import { VacancyType } from "../../../../api/types";
+import { changeFavorites } from "../../../../bll/authReducer";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/hooks";
 
 import styles from "./SvgStar.module.scss";
 
@@ -18,6 +18,7 @@ export const SvgStar: React.FC<SvgStarProps> = ({ vacancy }) => {
 
   return (
     <svg
+      data-elem={`vacancy-${vacancy.id}-shortlist-button`}
       className={isFavorite ? styles.starActive : styles.star}
       width="22"
       height="20"

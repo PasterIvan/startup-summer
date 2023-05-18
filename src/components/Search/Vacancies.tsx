@@ -12,7 +12,7 @@ import { useSearchParams } from "react-router-dom";
 
 import { useAppSelector } from "../../hooks/hooks";
 import { useElementWidth } from "../../hooks/useElementWidth";
-import search from "../../img/Search.svg";
+import search from "../../img/search.svg";
 import { Vacancy } from "../common/Vacancy";
 import { NotFound } from "../NotFound/NotFound";
 
@@ -59,6 +59,7 @@ export const Vacancies: React.FC = () => {
   return (
     <Flex ref={ref} className={classes.flex} gap="md">
       <Input
+        data-elem="search-input"
         size="lg"
         radius="sm"
         w="100%"
@@ -66,7 +67,11 @@ export const Vacancies: React.FC = () => {
         defaultValue={newKeyword}
         placeholder="Введите название вакансии"
         rightSection={
-          <Button radius="sm" onClick={setKeywordSearch}>
+          <Button
+            data-elem="search-button"
+            radius="sm"
+            onClick={setKeywordSearch}
+          >
             Поиск
           </Button>
         }

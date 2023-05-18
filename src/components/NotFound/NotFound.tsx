@@ -10,7 +10,7 @@ import {
 } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
-import NotFoundImg from "../../img/NotFound.svg";
+import NotFoundImg from "../../img/not-found.svg";
 
 type NotFoundProps = {
   notButton?: boolean;

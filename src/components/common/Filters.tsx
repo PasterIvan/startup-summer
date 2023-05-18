@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import { Box, Button, createStyles, Flex, Select, Text } from "@mantine/core";
-import { IconChevronDown } from "@tabler/icons-react";
 import { useSearchParams } from "react-router-dom";
 
 import { cataloguesTC } from "../../bll/filtersReducer";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 
 import { InputPayment } from "./InputPayment";
-import { SvgClose } from "./SvgClose/SvgClose";
+import { SvgArrow } from "./Svg/SvgArrow";
+import { SvgClose } from "./Svg/SvgClose";
 
 type FiltersProps = {
   onChangeFilters: (
@@ -33,6 +33,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
   const [paymentTo, setPaymentTo] = useState(
     searchParams.get("payment_to") || undefined,
   );
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     dispatch(cataloguesTC());
@@ -69,26 +70,49 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
         Отрасль
       </Text>
       <Select
+        data-elem="industry-select"
+        className={classes.select}
         placeholder="Выберете отрасль"
-        rightSection={<IconChevronDown size="1rem" />}
-        rightSectionWidth={36}
+        rightSection={<SvgArrow />}
         onChange={(value) => setCatalog(value || null)}
         radius="sm"
         size="md"
-        styles={{ rightSection: { pointerEvents: "none" } }}
+        styles={{
+          dropdown: {
+            borderRadius: "8px",
+            zIndex: 30,
+          },
+          input: {
+            "&:hover": {
+              border: "1px solid #5E96FC",
+            },
+          },
+          rightSection: {
+            pointerEvents: "none",
+            transform: `${isOpen && "rotate(-180deg)"}`,
+            svg: { width: 24, height: 24 },
+            path: { stroke: `${isOpen && "#5E96FC"}` },
+          },
+          item: {
+            borderRadius: "8px",
+            "&[data-hovered]": { background: "#DEECFF" },
+            "&[data-selected]": { background: "#5E96FC" },
+          },
+        }}
         pb={20}
         value={catalog}
-        positionDependencies={[catalog]}
         data={filters.map((el) => ({
           value: el.key.toString(),
           label: el.title_trimmed,
         }))}
-        className={classes.select}
+        onDropdownOpen={() => setIsOpen(true)}
+        onDropdownClose={() => setIsOpen(false)}
       />
       <Text fw={700} inline>
         Оклад
       </Text>
       <InputPayment
+        data-elem="salary-from-input"
         placeholder="От"
         min={0}
         max={Number(paymentTo) || undefined}
@@ -98,6 +122,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
         }}
       />
       <InputPayment
+        data-elem="salary-to-input"
         placeholder="До"
         min={Number(paymentFrom) || 0}
         value={Number(paymentTo) || undefined}
@@ -106,6 +131,7 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
         }}
       />
       <Button
+        data-elem="search-button"
         fullWidth
         size="md"
         radius="sm"

@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
 
-import { NumberInput, NumberInputHandlers } from "@mantine/core";
-import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
+import { createStyles, NumberInput, NumberInputHandlers } from "@mantine/core";
+
+import { SvgArrow } from "./Svg/SvgArrow";
 
 type InputPaymentProps = {
   placeholder: string;
@@ -18,6 +19,10 @@ export const InputPayment: React.FC<InputPaymentProps> = ({
   value,
   onChange,
 }) => {
+  const inc = "inc";
+  const dec = "dec";
+  const { classes } = useStyles();
+
   const handlers = useRef<NumberInputHandlers>();
   const incrementHandler = (): void => {
     handlers.current?.increment();
@@ -27,7 +32,7 @@ export const InputPayment: React.FC<InputPaymentProps> = ({
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className={classes.container}>
       <NumberInput
         hideControls
         placeholder={placeholder}
@@ -40,16 +45,18 @@ export const InputPayment: React.FC<InputPaymentProps> = ({
         onChange={(val: number) => onChange(val)}
         handlersRef={handlers}
       />
-      <IconChevronUp
-        size="0.8rem"
-        style={{ position: "absolute", right: 13, top: 6 }}
-        onClick={incrementHandler}
-      />
-      <IconChevronDown
-        size="0.8rem"
-        style={{ position: "absolute", right: 13, bottom: 6 }}
-        onClick={decrementHandler}
-      />
+      <SvgArrow onChange={incrementHandler} styles={inc} />
+      <SvgArrow onChange={decrementHandler} styles={dec} />
     </div>
   );
 };
+const useStyles = createStyles((theme) => ({
+  container: {
+    position: "relative",
+    "&:hover": {
+      input: {
+        border: `1px solid ${theme.colors.blue[1]}`,
+      },
+    },
+  },
+}));

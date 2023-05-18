@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { VacancyType } from "../../api/types";
 import pin from "../../img/pin.svg";
 
-import { SvgStar } from "./SvgStar/SvgStar";
+import { SvgStar } from "./Svg/SvgStar/SvgStar";
 
 type VacancyProps = {
   vacancy: VacancyType;
@@ -35,7 +35,11 @@ export const Vacancy: React.FC<VacancyProps> = ({ vacancy }) => {
   };
 
   return (
-    <Flex className={classes.container} gap="sm">
+    <Flex
+      data-elem={`vacancy-${vacancy.id}`}
+      className={classes.container}
+      gap="sm"
+    >
       <Flex w="100%" justify="space-between" direction="row">
         <NavLink
           to={`../search/${vacancy.id}`}
