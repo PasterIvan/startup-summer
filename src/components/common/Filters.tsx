@@ -154,6 +154,7 @@ const useStyles = createStyles((theme) => ({
     borderRadius: theme.radius.lg,
     maxWidth: 773,
     maxHeight: 360,
+    border: `1px solid ${theme.colors.gray[3]}`,
 
     [theme.fn.smallerThan("md")]: {
       flexDirection: "column",

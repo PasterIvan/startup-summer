@@ -38,11 +38,7 @@ export const Vacancy: React.FC<VacancyProps> = ({ vacancy }) => {
   };
 
   return (
-    <Flex
-      data-elem={`vacancy-${vacancy.id}`}
-      className={classes.container}
-      gap="5px"
-    >
+    <Flex data-elem={`vacancy-${vacancy.id}`} className={classes.container}>
       <Flex w="100%" justify="space-between" direction="row">
         <NavLink
           to={`../search/${vacancy.id}`}
@@ -82,6 +78,8 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "flex-start",
     alignItems: "flex-start",
     flexDirection: "column",
+    gap: 5,
+    border: `1px solid ${theme.colors.gray[3]}`,
   },
 
   payment: {

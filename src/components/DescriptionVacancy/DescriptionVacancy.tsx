@@ -81,6 +81,7 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: "#fff",
     padding: 24,
     borderRadius: theme.radius.md,
+    border: `1px solid ${theme.colors.gray[3]}`,
   },
   container: {
     display: "flex",
@@ -93,6 +94,7 @@ const useStyles = createStyles((theme) => ({
     alignItems: "flex-start",
     flexDirection: "column",
     gap: 10,
+    border: `1px solid ${theme.colors.gray[3]}`,
   },
   payment: {
     gap: 12,
