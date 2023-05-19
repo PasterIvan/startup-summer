@@ -12,7 +12,7 @@ import { SvgClose } from "./Svg/SvgClose";
 
 type FiltersProps = {
   onChangeFilters: (
-    catalog: string | undefined | null,
+    catalog: string | null,
     payment_from: string | undefined,
     payment_to: string | undefined,
   ) => void;

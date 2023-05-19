@@ -24,8 +24,8 @@ export const Search: React.FC = () => {
   );
 
   const setFilters = (
-    catalog: string | undefined | null,
-    paymentFrom: string | undefined | null,
+    catalog: string | null,
+    paymentFrom: string | undefined,
     paymentTo: string | undefined,
   ): void => {
     const queryParams: {
