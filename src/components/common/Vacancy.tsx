@@ -5,8 +5,9 @@ import { NavLink } from "react-router-dom";
 
 import { VacancyType } from "../../api/types";
 import pin from "../../img/pin.svg";
+import { payment } from "../../utils/payment";
 
-import { SvgStar } from "./Svg/SvgStar/SvgStar";
+import { SvgStar } from "./Svg/SvgStar";
 
 type VacancyProps = {
   vacancy: VacancyType;
@@ -14,28 +15,6 @@ type VacancyProps = {
 
 export const Vacancy: React.FC<VacancyProps> = ({ vacancy }) => {
   const { classes } = useStyles();
-
-  const payment = (from: number, to: number): string => {
-    let res = "";
-
-    if (from !== 0 && to !== 0) {
-      res +=
-        from === to
-          ? `${to} ${vacancy.currency}`
-          : `${from} - ${to} ${vacancy.currency}`;
-    }
-
-    if (from === 0 && to === 0) {
-      res += vacancy.agreement ? `по договоренности` : `не указана`;
-    }
-
-    if ((from === 0 && to !== 0) || (from !== 0 && to === 0)) {
-      if (from === 0 && to !== 0) res += `до ${to} ${vacancy.currency}`;
-      if (from !== 0 && to === 0) res += `от ${from} ${vacancy.currency}`;
-    }
-
-    return res;
-  };
 
   return (
     <Flex data-elem={`vacancy-${vacancy.id}`} className={classes.container}>
@@ -52,7 +31,7 @@ export const Vacancy: React.FC<VacancyProps> = ({ vacancy }) => {
       </Flex>
       <Flex className={classes.payment}>
         <Text fw={600} fz="sm" className={classes.paymentText}>
-          з/п {payment(vacancy.payment_from, vacancy.payment_to)}
+          з/п {payment(vacancy)}
         </Text>
         <div className={classes.dot}>•</div>
         <Text fz="sm" className={classes.paymentText}>

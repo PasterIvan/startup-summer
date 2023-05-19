@@ -6,33 +6,14 @@ import { useParams } from "react-router-dom";
 import { vacancyByIdTC } from "../../bll/vacanciesReducer";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import pin from "../../img/pin.svg";
-import { SvgStar } from "../common/Svg/SvgStar/SvgStar";
+import { payment } from "../../utils/payment";
+import { SvgStar } from "../common/Svg/SvgStar";
 
 export const DescriptionVacancy: React.FC = () => {
   const dispatch = useAppDispatch();
   const { classes } = useStyles();
   const { id } = useParams();
   const { vacancy } = useAppSelector((state) => state.vacancies);
-
-  const payment = (from: number, to: number): string => {
-    let res = "";
-
-    if (from !== 0 && to !== 0) {
-      res +=
-        from === to
-          ? `${to} ${vacancy.currency}`
-          : `${from} - ${to} ${vacancy.currency}`;
-    }
-    if (from === 0 && to === 0) {
-      res += vacancy.agreement ? `по договоренности` : `не указана`;
-    }
-    if ((from === 0 && to !== 0) || (from !== 0 && to === 0)) {
-      if (from === 0 && to !== 0) res += `до ${to} ${vacancy.currency}`;
-      if (from !== 0 && to === 0) res += `от ${from} ${vacancy.currency}`;
-    }
-
-    return res;
-  };
 
   useEffect(() => {
     if (id) dispatch(vacancyByIdTC(+id));
@@ -49,7 +30,7 @@ export const DescriptionVacancy: React.FC = () => {
         </Flex>
         <Flex className={classes.payment}>
           <Text fz="md" fw={700}>
-            з/п {payment(vacancy.payment_from, vacancy.payment_to)}
+            з/п {payment(vacancy)}
           </Text>
           <div className={classes.dot}>•</div>
           <Text fz="md">{vacancy.type_of_work.title}</Text>

@@ -1,10 +1,10 @@
 import React from "react";
 
-import { VacancyType } from "../../../../api/types";
-import { changeFavorites } from "../../../../bll/authReducer";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/hooks";
+import { createStyles } from "@mantine/core";
 
-import styles from "./SvgStar.module.scss";
+import { VacancyType } from "../../../api/types";
+import { changeFavorites } from "../../../bll/authReducer";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 
 type SvgStarProps = {
   vacancy: VacancyType;
@@ -12,6 +12,7 @@ type SvgStarProps = {
 
 export const SvgStar: React.FC<SvgStarProps> = ({ vacancy }) => {
   const dispatch = useAppDispatch();
+  const { classes } = useStyles();
 
   const { favourites } = useAppSelector((state) => state.auth);
   const isFavorite = favourites.some((el) => el.id === vacancy.id);
@@ -19,7 +20,7 @@ export const SvgStar: React.FC<SvgStarProps> = ({ vacancy }) => {
   return (
     <svg
       data-elem={`vacancy-${vacancy.id}-shortlist-button`}
-      className={isFavorite ? styles.starActive : styles.star}
+      className={isFavorite ? classes.starActive : classes.star}
       width="22"
       height="20"
       viewBox="0 0 22 20"
@@ -35,3 +36,26 @@ export const SvgStar: React.FC<SvgStarProps> = ({ vacancy }) => {
     </svg>
   );
 };
+const useStyles = createStyles((theme) => ({
+  star: {
+    minWidth: 22,
+    "&:hover": {
+      path: {
+        stroke: theme.colors.blue[1],
+      },
+    },
+  },
+  starActive: {
+    minWidth: 22,
+    fill: theme.colors.blue[1],
+    path: {
+      stroke: theme.colors.blue[1],
+    },
+    "&:hover": {
+      fill: theme.colors.blue[2],
+      path: {
+        stroke: theme.colors.blue[2],
+      },
+    },
+  },
+}));
