@@ -88,17 +88,19 @@ export const Vacancies: React.FC = () => {
           <Vacancy key={vacancy.id} vacancy={vacancy} />
         ))
       )}
-      <Pagination
-        total={total}
-        siblings={width && width < 380 ? 0 : 1}
-        className={classes.paginator}
-        size={width && width < 380 ? "sm" : "md"}
-        value={Number(searchParams.get("page")) + 1 || 0}
-        defaultValue={Number(page) + 1 || 0}
-        onChange={(value) => {
-          setPageParam((value - 1).toString());
-        }}
-      />
+      {total > 1 && (
+        <Pagination
+          total={total}
+          siblings={width && width < 380 ? 0 : 1}
+          className={classes.paginator}
+          size={width && width < 380 ? "sm" : "md"}
+          value={Number(searchParams.get("page")) + 1 || 0}
+          defaultValue={Number(page) + 1 || 0}
+          onChange={(value) => {
+            setPageParam((value - 1).toString());
+          }}
+        />
+      )}
     </Flex>
   );
 };

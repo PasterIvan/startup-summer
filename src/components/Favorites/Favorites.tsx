@@ -47,22 +47,22 @@ export const Favorites: React.FC = () => {
         {favourites.length === 0 ? (
           <NotFound />
         ) : (
-          <>
-            {favouritesInPage.map((vacancy) => (
-              <Vacancy key={vacancy.id} vacancy={vacancy} />
-            ))}
-            <Pagination
-              total={totalPages}
-              className={classes.paginator}
-              siblings={width && width < 380 ? 0 : 1}
-              size={width && width < 500 ? "sm" : "md"}
-              value={favouritesPage + 1}
-              defaultValue={favouritesPage + 1}
-              onChange={(value) => {
-                dispatch(setFavouritesPage(value - 1));
-              }}
-            />
-          </>
+          favouritesInPage.map((vacancy) => (
+            <Vacancy key={vacancy.id} vacancy={vacancy} />
+          ))
+        )}
+        {totalPages > 1 && (
+          <Pagination
+            total={totalPages}
+            className={classes.paginator}
+            siblings={width && width < 380 ? 0 : 1}
+            size={width && width < 500 ? "sm" : "md"}
+            value={favouritesPage + 1}
+            defaultValue={favouritesPage + 1}
+            onChange={(value) => {
+              dispatch(setFavouritesPage(value - 1));
+            }}
+          />
         )}
       </Flex>
     </Container>
