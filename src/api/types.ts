@@ -83,3 +83,28 @@ export type SearchParamsType = {
   payment_to?: string;
   published?: string;
 };
+export type AuthType = {
+  access_token: string;
+  refresh_token: string;
+  ttl: number;
+  expires_in: number;
+  token_type: string;
+  reg_user_resumes_count: number;
+};
+
+export type PositionType = {
+  id_parent: number;
+  key: number;
+  title: string;
+  title_rus: string;
+  url_rus: string;
+};
+
+export type CatalogType = {
+  key: number;
+  positions: PositionType[];
+  title: string;
+  title_rus: string;
+  title_trimmed: string;
+  url_rus: string;
+};

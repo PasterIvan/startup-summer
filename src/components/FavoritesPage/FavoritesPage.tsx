@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import { Container, createStyles, Flex, Pagination } from "@mantine/core";
 
 import { VacancyType } from "../../api/types";
-import { setFavouritesPage } from "../../bll/authReducer";
+import { setFavouritesPage } from "../../bll/reducers/authReducer";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useElementWidth } from "../../hooks/useElementWidth";
-import { Vacancy } from "../common/Vacancy";
+import { VacancyCard } from "../common/VacancyCard";
 import { NotFound } from "../NotFound/NotFound";
 
-export const Favorites: React.FC = () => {
+export const FavoritesPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { classes } = useStyles();
 
@@ -48,7 +48,7 @@ export const Favorites: React.FC = () => {
           <NotFound />
         ) : (
           favouritesInPage.map((vacancy) => (
-            <Vacancy key={vacancy.id} vacancy={vacancy} />
+            <VacancyCard key={vacancy.id} vacancy={vacancy} />
           ))
         )}
         {totalPages > 1 && (

@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { vacancyAPI } from "../api/api";
-import { SearchParamsType } from "../api/types";
-import { requestStatus } from "../enums/requestStatus";
+import { vacancyAPI } from "../../api/api";
+import { CatalogType, SearchParamsType } from "../../api/types";
+import { requestStatus } from "../../enums/requestStatus";
 
 import { setAppStatus } from "./appReducer";
 
@@ -36,30 +36,13 @@ const slice = createSlice({
       payment_to: undefined,
       published: "1",
     } as SearchParamsType,
-    filters: [
-      {
-        title_rus: "",
-        url_rus: "",
-        title: "",
-        title_trimmed: "",
-        key: 1,
-        positions: [
-          {
-            title_rus: "",
-            url_rus: "",
-            title: "",
-            id_parent: 1,
-            key: 1,
-          },
-        ],
-      },
-    ],
+    catalogues: [] as CatalogType[],
   },
   reducers: {
-    setCatalogues(state, action) {
-      state.filters = action.payload;
+    setCatalogues(state, action: PayloadAction<CatalogType[]>) {
+      state.catalogues = action.payload;
     },
-    setParamsState(state, action) {
+    setParamsState(state, action: PayloadAction<SearchParamsType>) {
       state.paramsState = action.payload;
     },
   },

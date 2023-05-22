@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { requestStatus } from "../enums/requestStatus";
+import { requestStatus } from "../../enums/requestStatus";
 
 const slice = createSlice({
   name: "app",

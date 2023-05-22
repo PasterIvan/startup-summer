@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Box, Container, createStyles, Flex, Image, Text } from "@mantine/core";
 import { useParams } from "react-router-dom";
 
-import { vacancyByIdTC } from "../../bll/vacanciesReducer";
+import { vacancyByIdTC } from "../../bll/reducers/vacanciesReducer";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import pin from "../../img/pin.svg";
 import { payment } from "../../utils/payment";

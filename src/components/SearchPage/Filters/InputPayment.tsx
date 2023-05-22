@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 
 import { createStyles, NumberInput, NumberInputHandlers } from "@mantine/core";
 
-import { SvgArrow } from "./Svg/SvgArrow";
+import { SvgArrow } from "../../common/Svg/SvgArrow";
 
 type InputPaymentProps = {
   placeholder: string;

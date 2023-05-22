@@ -13,11 +13,11 @@ import { useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../hooks/hooks";
 import { useElementWidth } from "../../hooks/useElementWidth";
 import search from "../../img/search.svg";
-import { Vacancy } from "../common/Vacancy";
+import { VacancyCard } from "../common/VacancyCard";
 import { NotFound } from "../NotFound/NotFound";
 
 export const Vacancies: React.FC = () => {
-  const { vacancies, total } = useAppSelector((state) => state.vacancies);
+  const { vacancies, totalPages } = useAppSelector((state) => state.vacancies);
   const { page, keyword } = useAppSelector(
     (state) => state.filters.paramsState,
   );
@@ -85,12 +85,12 @@ export const Vacancies: React.FC = () => {
         <NotFound notButton />
       ) : (
         vacancies.map((vacancy) => (
-          <Vacancy key={vacancy.id} vacancy={vacancy} />
+          <VacancyCard key={vacancy.id} vacancy={vacancy} />
         ))
       )}
-      {total > 1 && (
+      {totalPages > 1 && (
         <Pagination
-          total={total}
+          total={totalPages}
           siblings={width && width < 380 ? 0 : 1}
           className={classes.paginator}
           size={width && width < 380 ? "sm" : "md"}

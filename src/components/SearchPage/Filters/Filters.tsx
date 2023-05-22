@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, createStyles, Flex, Select, Text } from "@mantine/core";
 import { useSearchParams } from "react-router-dom";
 
-import { cataloguesTC } from "../../bll/filtersReducer";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { cataloguesTC } from "../../../bll/reducers/filtersReducer";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
+import { SvgArrow } from "../../common/Svg/SvgArrow";
+import { SvgClose } from "../../common/Svg/SvgClose";
 
 import { InputPayment } from "./InputPayment";
-import { SvgArrow } from "./Svg/SvgArrow";
-import { SvgClose } from "./Svg/SvgClose";
 
 type FiltersProps = {
   onChangeFilters: (
@@ -21,7 +21,7 @@ type FiltersProps = {
 export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
   const dispatch = useAppDispatch();
   const { classes } = useStyles();
-  const { filters } = useAppSelector((state) => state.filters);
+  const { catalogues } = useAppSelector((state) => state.filters);
   const [searchParams] = useSearchParams();
 
   const [catalog, setCatalog] = useState(
@@ -103,9 +103,9 @@ export const Filters: React.FC<FiltersProps> = ({ onChangeFilters }) => {
           },
         }}
         value={catalog}
-        data={filters.map((el) => ({
+        data={catalogues.map((el) => ({
           value: el.key.toString(),
-          label: el.title,
+          label: el.title_trimmed,
         }))}
         onDropdownOpen={() => setIsOpen(true)}
         onDropdownClose={() => setIsOpen(false)}

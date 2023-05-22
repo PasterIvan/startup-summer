@@ -13,7 +13,7 @@ type VacancyProps = {
   vacancy: VacancyType;
 };
 
-export const Vacancy: React.FC<VacancyProps> = ({ vacancy }) => {
+export const VacancyCard: React.FC<VacancyProps> = ({ vacancy }) => {
   const { classes } = useStyles();
 
   return (

@@ -3,15 +3,15 @@ import React, { useEffect, useMemo } from "react";
 import { Container, createStyles, Flex } from "@mantine/core";
 import { useSearchParams } from "react-router-dom";
 
-import { setParamsState } from "../../bll/filtersReducer";
-import { vacancyTC } from "../../bll/vacanciesReducer";
+import { setParamsState } from "../../bll/reducers/filtersReducer";
+import { vacancyTC } from "../../bll/reducers/vacanciesReducer";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { getActualSearchParams } from "../../utils/getActualParams";
-import { Filters } from "../common/Filters";
 
+import { Filters } from "./Filters/Filters";
 import { Vacancies } from "./Vacancies";
 
-export const Search: React.FC = () => {
+export const SearchPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { paramsState } = useAppSelector((state) => state.filters);
   const { classes } = useStyles();

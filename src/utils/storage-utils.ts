@@ -1,6 +1,8 @@
+import { VacancyType } from "../api/types";
+
 export const loadState: any = () => {
   try {
-    const serializedState = localStorage.getItem("app-state");
+    const serializedState = localStorage.getItem("Jobored");
 
     if (serializedState === null) {
       return undefined;
@@ -22,13 +24,13 @@ export const saveState: any = (state: {
       token_type: string;
       reg_user_resumes_count: number;
     };
-    favourites: {};
+    favourites: VacancyType;
   };
 }) => {
   try {
     const serializedState = JSON.stringify(state);
 
-    localStorage.setItem("app-state", serializedState);
+    localStorage.setItem("Jobored", serializedState);
   } catch {
     // ignore write errors
   }

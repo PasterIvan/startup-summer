@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { createStyles, LoadingOverlay, MantineProvider } from "@mantine/core";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { loginTC } from "./bll/authReducer";
+import { loginTC } from "./bll/reducers/authReducer";
 import { DescriptionVacancy } from "./components/DescriptionVacancy/DescriptionVacancy";
-import { Favorites } from "./components/Favorites/Favorites";
+import { FavoritesPage } from "./components/FavoritesPage/FavoritesPage";
 import { Head } from "./components/Header/Head";
 import { NotFound } from "./components/NotFound/NotFound";
-import { Search } from "./components/Search/Search";
+import { SearchPage } from "./components/SearchPage/SearchPage";
 import { requestStatus } from "./enums/requestStatus";
 import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 import { myTheme } from "./themeConfig";
@@ -46,9 +46,9 @@ export const App: React.FC = () => {
         <Head links={links} />
         <Routes>
           <Route path="/" element={<Navigate to="search" />} />
-          <Route path="search" element={<Search />} />
+          <Route path="search" element={<SearchPage />} />
           <Route path="search/:id" element={<DescriptionVacancy />} />
-          <Route path="favourites" element={<Favorites />} />
+          <Route path="favourites" element={<FavoritesPage />} />
           <Route path="404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" />} />
         </Routes>

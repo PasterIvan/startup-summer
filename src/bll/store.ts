@@ -4,10 +4,10 @@ import thunkMiddleware, { type ThunkDispatch } from "redux-thunk";
 
 import { loadState, saveState } from "../utils/storage-utils";
 
-import { appReducer } from "./appReducer";
-import { authReducer } from "./authReducer";
-import { filtersReducer } from "./filtersReducer";
-import { vacanciesReducer } from "./vacanciesReducer";
+import { appReducer } from "./reducers/appReducer";
+import { authReducer } from "./reducers/authReducer";
+import { filtersReducer } from "./reducers/filtersReducer";
+import { vacanciesReducer } from "./reducers/vacanciesReducer";
 
 const rootReducer = combineReducers({
   filters: filtersReducer,

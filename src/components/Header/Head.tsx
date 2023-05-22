@@ -13,7 +13,7 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { NavLink } from "react-router-dom";
 
-import { setParamsState } from "../../bll/filtersReducer";
+import { setParamsState } from "../../bll/reducers/filtersReducer";
 import { useAppDispatch } from "../../hooks/hooks";
 import logo from "../../img/logo.svg";
 

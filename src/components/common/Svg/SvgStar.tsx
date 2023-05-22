@@ -3,7 +3,7 @@ import React from "react";
 import { createStyles } from "@mantine/core";
 
 import { VacancyType } from "../../../api/types";
-import { changeFavorites } from "../../../bll/authReducer";
+import { changeFavorites } from "../../../bll/reducers/authReducer";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 
 type SvgStarProps = {

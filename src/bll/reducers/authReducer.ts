@@ -4,9 +4,9 @@ import {
   type PayloadAction,
 } from "@reduxjs/toolkit";
 
-import { authAPI } from "../api/authApi";
-import { VacancyType } from "../api/types";
-import { requestStatus } from "../enums/requestStatus";
+import { authAPI } from "../../api/authApi";
+import { AuthType, VacancyType } from "../../api/types";
+import { requestStatus } from "../../enums/requestStatus";
 
 import { setAppStatus } from "./appReducer";
 
@@ -64,12 +64,3 @@ const slice = createSlice({
 export const authReducer = slice.reducer;
 
 export const { setAuth, changeFavorites, setFavouritesPage } = slice.actions;
-
-type AuthType = {
-  access_token: string;
-  refresh_token: string;
-  ttl: number;
-  expires_in: number;
-  token_type: string;
-  reg_user_resumes_count: number;
-};
