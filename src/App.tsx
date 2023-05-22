@@ -21,7 +21,7 @@ const links = [
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const { classes } = useStyles();
-  const { access_token } = useAppSelector((state) => state.auth.login);
+  const { access_token, ttl } = useAppSelector((state) => state.auth.login);
   const { statusApp } = useAppSelector((state) => state.app);
 
   const [load, setLoad] = useState(false);
@@ -32,7 +32,7 @@ export const App: React.FC = () => {
   }, [statusApp]);
 
   useEffect(() => {
-    if (access_token === "") dispatch(loginTC());
+    if (access_token === "" || ttl < Date.now() / 1000) dispatch(loginTC());
   }, []);
 
   return (
